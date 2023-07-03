@@ -1,28 +1,32 @@
 #!/usr/bin/python3
-"""Pascal Triangle Interview Challenge"""
+"""
+Defines a function that returns a list of lists
+of integers that represents the pascal's triangle.
+"""
 
 
 def pascal_triangle(n):
-    """returns a list of lists of numbers
-    representing the pascal triangle"""
+    """create a list of lists of integers
+    parameters:
+        n [int]:
+            the number of rows
+    return:
+        [list of lists of ints]:
+            representing the pascal's triangle
+    """
+    if type(n) is not int:
+        raise TypeError("n must be an integer")
+    matrix = []
     if n <= 0:
-        return []
-
-    pascal_triangle = [0] * n
-
+        return matrix
     for i in range(n):
-        # define a row and fill first and last idx with 1
-        new_row = [0] * (i+1)
-        new_row[0] = 1
-        new_row[len(new_row) - 1] = 1
-
-        for j in range(1, i):
-            if j > 0 and j < len(new_row):
-                a = pascal_triangle[i - 1][j]
-                b = pascal_triangle[i - 1][j - 1]
-                new_row[j] = a + b
-
-        pascal_triangle[i] = new_row
-
-    return pascal_triangle
-
+        arr = []
+        for j in range(i+1):
+            if j == 0:
+                arr.append(1)
+            elif j == i:
+                arr.append(1)
+            else:
+                arr.append(matrix[i-1][j-1] + matrix[i-1][j])
+        matrix.append(arr)
+    return matrix
