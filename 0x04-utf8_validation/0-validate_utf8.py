@@ -1,5 +1,3 @@
-0-validate_utf8.py
-
 #!/usr/bin/python3
 """
 UTF-8 Validation
